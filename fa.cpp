@@ -1,6 +1,6 @@
 /* File: fa.cpp
  * Author: CRE
- * Last Edited: Thu Sep 28 16:17:23 2017
+ * Last Edited: Thu Sep 28 16:19:21 2017
  */
 
 #include "fa.h"
@@ -20,9 +20,10 @@ fa::~fa()
 
 FaParser* fa::generateFaParser(string FaFileName)
 {
+	FaParser* FP=nullptr;
 	try
 	{
-	FaParser* FP= new FaParser(FaFileName);
+	FP= new FaParser(FaFileName);
 	}
 	catch(int e)
 	{
@@ -31,6 +32,7 @@ FaParser* fa::generateFaParser(string FaFileName)
 			fprintf(stderr, "read file %s error", FaFileName.c_str());
 		}
 	}
+	return FP;
 }
 
 bool fa::haveBases() const
