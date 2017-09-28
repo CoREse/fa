@@ -1,6 +1,6 @@
 /* File: fa.cpp
  * Author: CRE
- * Last Edited: Wed Sep 27 16:54:19 2017
+ * Last Edited: Thu Sep 28 16:17:23 2017
  */
 
 #include "fa.h"
@@ -76,6 +76,7 @@ bool fa::readBases(string FaFileName)
 		if (feof(FaFile)) break;
 	}
 	Size=i;
+	fclose(FaFile);
 	return true;
 }
 
