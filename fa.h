@@ -42,5 +42,6 @@ class fa
 	bool haveBases() const;
 	static FaParser* generateFaParser(std::string FaFileName);//generate a parser for FaFileName, return nullptr if failed
 	bool readBases(std::string FaFileName);//read Bases and Chrs from FaFileName, return true if succeeded
+	unsigned getChrIndex(unsigned SiteIndex) const;
 };
 

@@ -1,6 +1,6 @@
 /* File: fa.cpp
  * Author: CRE
- * Last Edited: Thu Sep 28 16:19:21 2017
+ * Last Edited: Mon Sep 17 13:52:24 2018
  */
 
 #include "fa.h"
@@ -80,6 +80,19 @@ bool fa::readBases(string FaFileName)
 	Size=i;
 	fclose(FaFile);
 	return true;
+}
+
+unsigned fa::getChrIndex(unsigned SiteIndex)
+{
+	unsigned i;
+	for (i = 1; i<Chrs.size(); ++i)
+	{
+		if (SiteIndex<Chrs[i].StartPoint)
+		{
+			return i-1;
+		}
+	}
+	return i;
 }
 
 
