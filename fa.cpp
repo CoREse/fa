@@ -1,10 +1,11 @@
 /* File: fa.cpp
  * Author: CRE
- * Last Edited: Mon Sep 17 13:52:24 2018
+ * Last Edited: Mon Oct 29 19:19:03 2018
  */
 
 #include "fa.h"
 #include "string.h"
+#include <stdlib.h>
 
 using namespace std;
 
