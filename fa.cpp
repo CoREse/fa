@@ -82,7 +82,7 @@ bool fa::readBases(string FaFileName)
 	return true;
 }
 
-unsigned fa::getChrIndex(unsigned SiteIndex)
+unsigned fa::getChrIndex(unsigned SiteIndex) const
 {
 	unsigned i;
 	for (i = 1; i<Chrs.size(); ++i)
