@@ -10,17 +10,17 @@ using namespace std;
 
 //fa
 fa::fa()
-	:Bases(nullptr),Size(0)
+	:Bases(NULL),Size(0)
 {
 }
 fa::~fa()
 {
-	if (Bases!=nullptr) free(Bases);
+	if (Bases!=NULL) free(Bases);
 }
 
 FaParser* fa::generateFaParser(string FaFileName)
 {
-	FaParser* FP=nullptr;
+	FaParser* FP=NULL;
 	try
 	{
 	FP= new FaParser(FaFileName);
@@ -37,7 +37,7 @@ FaParser* fa::generateFaParser(string FaFileName)
 
 bool fa::haveBases() const
 {
-	if (Bases!=nullptr && Size!=0) return true;
+	if (Bases!=NULL && Size!=0) return true;
 	return false;
 }
 
@@ -46,18 +46,18 @@ bool fa::readBases(string FaFileName)
 	unsigned TN=0, FileSize=0, i=0;
 	chr TChr;
 	FILE* FaFile=fopen(FaFileName.c_str(), "r");
-	if (FaFile==nullptr) throw NO_SUCH_FILE;
+	if (FaFile==NULL) throw NO_SUCH_FILE;
 	
 	fseek(FaFile,0,SEEK_END);
 	FileSize=ftell(FaFile);
 	rewind(FaFile);
 
-	if (Bases!=nullptr) free(Bases);
+	if (Bases!=NULL) free(Bases);
 	Bases=new char[FileSize];
 
 	char * Buffer=new char[BUFFER_SIZE];
 	
-	while (fgets(Buffer,BUFFER_SIZE,FaFile)!=nullptr)
+	while (fgets(Buffer,BUFFER_SIZE,FaFile)!=NULL)
 	{
 		TN=strlen(Buffer);
 		if (TN>=BUFFER_SIZE-1) throw LINE_TOO_LARGE;
@@ -101,7 +101,7 @@ unsigned fa::getChrIndex(unsigned SiteIndex) const
 FaParser::FaParser(std::string FaFileName)
 {
 	FaFile=fopen(FaFileName.c_str(), "r");
-	if (FaFile==nullptr) throw NO_SUCH_FILE;
+	if (FaFile==NULL) throw NO_SUCH_FILE;
 	NextBuffer=new char[MAX_NEXT_SIZE+1];
 	Buffer=new char[BUFFER_SIZE];
 	BI=0;
@@ -128,8 +128,8 @@ unsigned FaParser::getParsed () const
 
 char * FaParser::next(unsigned N)
 {
-	if (N==0) return nullptr;
-	if (feof(FaFile)&&BI>=BN) return nullptr;
+	if (N==0) return NULL;
+	if (feof(FaFile)&&BI>=BN) return NULL;
 	unsigned Fulfiled=0, TN=0;
 	while (Fulfiled<N)
 	{
@@ -144,7 +144,7 @@ char * FaParser::next(unsigned N)
 		}
 		else
 		{
-			if (fgets(Buffer,BUFFER_SIZE,FaFile)!=nullptr)
+			if (fgets(Buffer,BUFFER_SIZE,FaFile)!=NULL)
 			{
 				TN=strlen(Buffer);
 				if (TN>=BUFFER_SIZE-1) throw LINE_TOO_LARGE;
@@ -162,7 +162,7 @@ char * FaParser::next(unsigned N)
 			else break;
 		}
 	}
-	if (Fulfiled==0) return nullptr;
+	if (Fulfiled==0) return NULL;
 	Parsed+=Fulfiled;
 	NextBuffer[Fulfiled]='\0';
 	return NextBuffer;
