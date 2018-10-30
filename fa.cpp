@@ -60,18 +60,19 @@ bool fa::readBases(string FaFileName)
 	
 	while (fgets(Buffer,BUFFER_SIZE,FaFile)!=NULL)
 	{
+		TN=strlen(Buffer);
 		if (Buffer[0]=='>') 
 		{
+			if (TN>=BUFFER_SIZE-1) throw LINE_TOO_LARGE;
 			TChr.Name=Buffer+1;
 			TChr.StartPoint=i;
 			Chrs.push_back(TChr);
 		}
 		else
 		{
-			for (unsigned j=0;j!=BUFFER_SIZE;++j)
+			if (Buffer[TN-1]=='\n') --TN;
+			for (unsigned j=0;j!=TN;++j)
 			{
-				if (Buffer[j]=='\n' or Buffer[j]==' ' or Buffer[j]=='\t') continue;
-				if (Buffer[j]=='\0') break;
 				Bases[i++]=Buffer[j];
 			}
 		}
